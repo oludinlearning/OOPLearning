@@ -25,7 +25,7 @@ namespace MVP_Learning
 
             for (int i = 0; i <= number.Next(5, 10); i++)
             {
-                array.Add(number.Next(0, 100));
+                array.Add(number.Next(-100, 100));
             }
             return array;
         }
@@ -87,6 +87,79 @@ namespace MVP_Learning
                 }
             }
             else {                
+            }
+            return array;
+        }
+
+        public static List<int> DeleteElement(List<int> array, string arg) {
+            bool found = false;
+            int i = 0;
+            int key;
+            switch (arg) {
+                case "firsteven":
+                    while (!found && i < array.Count - 1)
+                    {
+                        if ((array[i] != 0) && (array[i] % 2 == 0))
+                        {
+                            found = true;
+                            array.RemoveAt(i);
+                        }
+                        i++;
+                    }
+                    if (!found) {
+                        Console.WriteLine("Четный элемент не найден.");
+                    }
+                    break;
+                case "firstodd":
+                    while (!found && i < array.Count - 1)
+                    {
+                        if ((array[i] != 0) && (array[i] % 2 == 1))
+                        {
+                            found = true;
+                            array.RemoveAt(i);
+                        }
+                        i++;
+                    }
+                    if (!found)
+                    {
+                        Console.WriteLine("Нечетный элемент не найден.");
+                    }
+                    break;
+                case "firstnegative":
+                    while (!found && i<array.Count-1)
+                    {
+                        if (array[i] < 0)
+                        {
+                            found = true;
+                            array.RemoveAt(i);
+                        }
+                        i++;
+                    }
+                    if (!found)
+                    {
+                        Console.WriteLine("Отрицательный элемент не найден.");
+                    }
+                    break;
+                case "key":
+                    Console.Write("Введите значение элемента, который нужно удалить: ");
+                    key = Convert.ToInt32(Console.ReadLine());
+                    while (!found && i < array.Count - 1)
+                    {
+                        if (array[i] == key)
+                        {
+                            found = true;
+                            array.RemoveAt(i);
+                        }
+                        i++;
+                    }
+                    if (!found)
+                    {
+                        Console.WriteLine("Заданный элемент не найден.");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Вы не выбрали действие.");
+                    break;
             }
             return array;
         }
